@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: dtsc
+    database: cpoderoso-dtsc
+    schema: stockMkt
+    tables:
+      - name: stock
+      - name: yIndustry
+      - name: yMarket
+      - name: ySymbol
+      - name: yTransactions
+      - name: yType
