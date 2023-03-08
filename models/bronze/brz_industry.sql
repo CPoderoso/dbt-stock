@@ -1,6 +1,6 @@
 with industry as (
     select *
-      from {{ source( 'dtsc', 'yIndustry') }}
+      from {{ source( 'dbt_stock', 'yIndustry') }}
 )
 
 select * from industry

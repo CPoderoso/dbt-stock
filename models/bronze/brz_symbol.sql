@@ -1,6 +1,6 @@
 with symbol as (
     select *
-      from {{ source( 'dtsc', 'ySymbol') }}
+      from {{ source( 'dbt_stock', 'ySymbol') }}
 )
 
 select * from symbol

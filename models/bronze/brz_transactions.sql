@@ -1,6 +1,6 @@
 with transactions as (
     select *
-      from {{ source( 'dtsc', 'yTransactions') }}
+      from {{ source( 'dbt_stock', 'yTransactions') }}
 )
 
 select * from transactions
