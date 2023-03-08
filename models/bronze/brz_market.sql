@@ -1,6 +1,6 @@
 with market as (
     select *
-      from {{ source( 'dtsc', 'yMarket') }}
+      from {{ source( 'dbt_stock', 'yMarket') }}
 )
 
 select * from market

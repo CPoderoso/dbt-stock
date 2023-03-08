@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: dtsc
+  - name: dbt_stock
     database: cpoderoso-dtsc
     schema: stockMkt
     tables:
