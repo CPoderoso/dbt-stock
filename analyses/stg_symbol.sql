@@ -1,7 +1,7 @@
 with symbols as (
     select 
      distinct symbol_nm, date_id 
-     from  {{ source( 'dtsc', 'stock') }}
+     from  {{ source( 'dbt_stock', 'stock') }}
 ),
 
 final as (

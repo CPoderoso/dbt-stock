@@ -2,7 +2,7 @@ with credit as (
     select * from {{ ref( 'brz_transactions' )}}
      where type_id in (select type_id
                          from {{ ref( 'brz_type' )}}
-                        where tyep_transaction = 'C')
+                        where type_transaction = 'C')
 ),
 
 final as (

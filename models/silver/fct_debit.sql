@@ -2,7 +2,7 @@ with debit as (
     select * from {{ ref( 'brz_transactions' )}}
      where type_id in (select type_id
                          from {{ ref( 'brz_type' )}}
-                        where tyep_transaction = 'D')
+                        where type_transaction = 'D')
 ),
 
 final as (
