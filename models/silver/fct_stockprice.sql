@@ -1,6 +1,18 @@
+{{
+    config(
+        materialized='incremental',
+        unique_key='stockprice_SK'
+    )
+}}
+
 with stockprice as (
     select {{ dbt_utils.generate_surrogate_key( ['symbol_nm', 'date_id'] ) }} as stockprice_SK, *
       from {{ ref('brz_stockprice')}}
+      {% if is_incremental() %}
+            -- this filter will only be applied on an incremental run
+            where date_id > (select max(date_id) from {{ this }})
+
+       {% endif %}
 ),
 
 symbol as (
@@ -20,3 +32,4 @@ final as (
 )
 
 select * from final
+ order by date_id DESC, symbol_id, stockprice_SK, close_vl
