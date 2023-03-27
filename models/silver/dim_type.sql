@@ -1,5 +1,5 @@
 with type as (
-    select * from {{ref('brz_type')}}
+    select * from {{ source( 'dbt_stock', 'yType') }}
 )
 
 select * from type

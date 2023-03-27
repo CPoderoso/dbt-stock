@@ -1,5 +1,5 @@
 with market as (
-    select * from {{ref('brz_market')}}
+    select * from {{ source( 'dbt_stock', 'yMarket') }}
 )
 
 select * from market

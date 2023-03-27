@@ -1,5 +1,5 @@
 with Industry as (
-    select * from {{ref('brz_industry')}}
+    select * from {{ source( 'dbt_stock', 'yIndustry') }}
 )
 
 select * from industry

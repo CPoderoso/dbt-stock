@@ -1,7 +1,7 @@
 with credit as (
-    select * from {{ ref( 'brz_transactions' )}}
+    select * from {{ source( 'dbt_stock', 'yTransactions') }}
      where type_id in (select type_id
-                         from {{ ref( 'brz_type' )}}
+                         from {{ source( 'dbt_stock', 'yType') }}
                         where type_transaction = 'C')
 ),
 
