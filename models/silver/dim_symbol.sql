@@ -1,5 +1,5 @@
 with symbol as (
-    select * from {{ref('brz_symbol')}}
+    select * from {{ source( 'dbt_stock', 'ySymbol') }}
 )
 
 select * from symbol

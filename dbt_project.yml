@@ -33,8 +33,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   dbt_stock:
-    bronze:
-      materialized: "view"
     silver:
       materialized: "table"
     gold:

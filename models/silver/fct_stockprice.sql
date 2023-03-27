@@ -7,7 +7,7 @@
 
 with stockprice as (
     select {{ dbt_utils.generate_surrogate_key( ['symbol_nm', 'date_id'] ) }} as stockprice_SK, *
-      from {{ ref('brz_stockprice')}}
+      from {{ source( 'dbt_stock', 'stock') }}
       {% if is_incremental() %}
             -- this filter will only be applied on an incremental run
             where date_id > (select max(date_id) from {{ this }})
@@ -17,7 +17,7 @@ with stockprice as (
 
 symbol as (
     select *
-      from {{ ref('brz_symbol')}}
+      from {{ source( 'dbt_stock', 'ySymbol') }}
 ),
 
 final as (

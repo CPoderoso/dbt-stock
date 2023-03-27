@@ -1,23 +1,23 @@
 version: 2
 
 models:
-  - name: brz_transactions
-    description: Transformed End of the Day Daily Stock Transaction Value
+  - name: dim_stockprice
+    description: End of the Day Daily Stock Transaction Value
     columns: 
       - name: symbol_id
         description: Foreign key for Symbol
         tests:
           - relationships:
-              to: ref( 'brz_symbol')
+              to: ref( 'dim_symbol')
               field: symbol_id
       - name: type_id
         description: Foreign key for Type of Transaction
         tests:
           - relationships:
-              to: ref('brz_type')
+              to: ref('dim_type')
               field: type_id
 
-  - name: brz_symbol
+  - name: dim_symbol
     description: Symbol / Company that is listed in the Stock Market.
     columns: 
       - name: symbol_id
@@ -26,7 +26,7 @@ models:
           - unique
           - not_null
 
-  - name: brz_industry
+  - name: dim_industry
     description: Symbol / Company Industry.
     columns: 
       - name: industry_id
@@ -35,7 +35,7 @@ models:
           - unique
           - not_null
           
-  - name: brz_market
+  - name: dim_market
     description: Market of the Symbol / Company.
     columns: 
       - name: market_id
@@ -43,7 +43,8 @@ models:
         tests:
           - unique
           - not_null
-  - name: brz_type
+
+  - name: dim_type
     description: Type of Transaction.
     columns: 
       - name: type_id
