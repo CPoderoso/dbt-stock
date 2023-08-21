@@ -8,7 +8,7 @@ t = fin.Tickers( 'msft aapl amzn tsla' )
 df = t.history("1d")
 df1 = df.stack()
 
-table_id ="cpoderoso-dtsc.stockMkt.stock"
+table_id ="<your Bigquery project and dataset>.stock"
 client = bigquery.Client()
 
 columns = list(df1)
@@ -19,8 +19,9 @@ for x in df1.index:
     ist =  ist + " { 'date_id': '"+ x[0].strftime('%Y-%m-%d') + "', 'symbol_nm': '" + x[1] + "'"
     w   = 0 # to set the DB Column Name
     for i in columns:
-        ist = ist + ", '" + coldb[w] + "': " + str(df1[i][z])
-        w   = w + 1
+        if I != 'Capital Gains':
+            ist = ist + ", '" + coldb[w] + "': " + str(df1[i][z])
+            w   = w + 1
     ist = ist + " },"
 
     z = z + 1
