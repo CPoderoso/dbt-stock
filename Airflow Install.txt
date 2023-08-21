@@ -1,0 +1,66 @@
+wsl --install
+
+sudo apt update && upgrade
+sudo apt install python3 python3-pip ipython3
+
+## Check if WSL time is correct ($date). If not, use this command to synchronize with Windows
+## sudo hwclock -s
+
+pip install virtualenv
+PATH="$PATH:/home/cpoderoso/.local/bin"
+## Make permanent
+$ sudo nano ~/.bashrc
+export PATH="$PATH:/home/cpoderoso/.local/bin"
+export AIRFLOW_HOME="/mnt/c/Users/chpod/airflow"
+export GOOGLE_APPLICATION_CREDENTIALS="/mnt/c/Users/chpod/airflow/dags/cpoderoso-dtsc-114b55e517f1.json"
+<CTRL-S> <CTRL-X>
+
+cd /mnt/c/Users/chpodvi
+virtualenv airflow_std
+source airflow_std/bin/activate
+mkdir airflow
+
+AIRFLOW_HOME=/mnt/c/Users/chpod/airflow
+cd $AIRFLOW_HOME
+export AIRFLOW_HOME="$(pwd)"
+pip install apache-airflow 
+pip install apache-airflow[cncf.kubernetes]
+
+#pip install apache-airflow==2.6.3 --constraint https://raw.githubusercontent.com/apache/airflow/constraints-2.6.3/constraints-3.10.txt
+#airflow standalone
+
+airflow db init
+airflow users create --username admin --password Oliveira68# --firstname admin --lastname admin --role Admin --email cpoderoso@gmail.com
+## if goes wrong: FLASK_APP=airflow.www.app flask fab create-admin
+airflow users list
+airflow scheduler
+
+## Open a new Terminal
+source airflow_std/bin/activate
+cd $AIRFLOW_HOME
+airflow webserver
+
+http://localhost:8080
+
+source airflow_env/bin/activate
+pip install yfinance
+pip install google-cloud-bigquery
+
+###### airflow.cfg ######
+## Update timezone from UTC to:
+## default_ui_timezone = America/New_York
+## default_timezone = US/Eastern
+## Update timeout:
+## web_server_master_timeout = 360
+## worker_refresh_batch_size = 0
+## worker_refresh_interval = 0
+## workers = 1
+
+####### After Reboot #######
+cd /mnt/c/Users/chpod/
+source airflow_std/bin/activate
+airflow scheduler
+-----------------
+cd /mnt/c/Users/chpod/
+source airflow_std/bin/activate
+airflow webserver
