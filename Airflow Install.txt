@@ -5,22 +5,24 @@ sudo apt install python3 python3-pip ipython3
 
 ## Check if WSL time is correct ($date). If not, use this command to synchronize with Windows
 ## sudo hwclock -s
+## OR
+## sudo ntpdate ntp.ubuntu.com
 
 pip install virtualenv
-PATH="$PATH:/home/cpoderoso/.local/bin"
+PATH="$PATH:/home/<user_path>/.local/bin"
 ## Make permanent
 $ sudo nano ~/.bashrc
-export PATH="$PATH:/home/cpoderoso/.local/bin"
-export AIRFLOW_HOME="/mnt/c/Users/chpod/airflow"
-export GOOGLE_APPLICATION_CREDENTIALS="/mnt/c/Users/chpod/airflow/dags/cpoderoso-dtsc-114b55e517f1.json"
+export PATH="$PATH:/home/<user_path>/.local/bin"
+export AIRFLOW_HOME="/mnt/c/Users/<user_path>/airflow"
+export GOOGLE_APPLICATION_CREDENTIALS="/mnt/c/Users/<user_path>/airflow/dags/<yourGoogleJSonFile>.json"
 <CTRL-S> <CTRL-X>
 
-cd /mnt/c/Users/chpodvi
+cd /mnt/c/Users/<user_path>
 virtualenv airflow_std
 source airflow_std/bin/activate
 mkdir airflow
 
-AIRFLOW_HOME=/mnt/c/Users/chpod/airflow
+AIRFLOW_HOME=/mnt/c/Users/<user_path>/airflow
 cd $AIRFLOW_HOME
 export AIRFLOW_HOME="$(pwd)"
 pip install apache-airflow 
@@ -30,7 +32,7 @@ pip install apache-airflow[cncf.kubernetes]
 #airflow standalone
 
 airflow db init
-airflow users create --username admin --password Oliveira68# --firstname admin --lastname admin --role Admin --email cpoderoso@gmail.com
+airflow users create --username admin --password <your_password> --firstname admin --lastname admin --role Admin --email <your_email>
 ## if goes wrong: FLASK_APP=airflow.www.app flask fab create-admin
 airflow users list
 airflow scheduler
@@ -57,10 +59,10 @@ pip install google-cloud-bigquery
 ## workers = 1
 
 ####### After Reboot #######
-cd /mnt/c/Users/chpod/
+cd /mnt/c/Users/<user_path>/
 source airflow_std/bin/activate
 airflow scheduler
 -----------------
-cd /mnt/c/Users/chpod/
+cd /mnt/c/Users/<user_path>/
 source airflow_std/bin/activate
 airflow webserver
