@@ -9,5 +9,5 @@ sources:
       - name: yIndustry
       - name: yMarket
       - name: ySymbol
-      - name: yTransactions
+      - name: transactions
       - name: yType
