@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: dim_stockprice
+  - name: fct_stockprice
     description: End of the Day Daily Stock Transaction Value
     columns: 
       - name: symbol_id
